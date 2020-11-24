@@ -23,6 +23,7 @@ Q_table = np.zeros((20, 20, action_space_size))
 max_episode = 10000
 env._max_episode_steps = 10000
 epsilon = 1
+epsilon_decay = 0.001
 learning_rate = 0.01
 discount_rate = 0.99
 
@@ -57,7 +58,7 @@ for episode in range(max_episode):
             break
 
     if epsilon >= 0.001:
-        epsilon -= np.exp(-0.001 * episode)
+        epsilon -= epsilon_decay * episode
 
     reward_all_episodes.append(reward_current_episode)
 
